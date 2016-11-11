@@ -1,16 +1,26 @@
 var Discord= require('discord.io');
 var chan = require('./skills/4chan.js');
+var TrashGames = require("./skills/games.js");
 var https = require('https');
 var bot = new Discord.Client({
     autorun: true,
     token: "MTY5MDk3NjgzMTE2NjIxODI0.Ce6asA.GI7Y-zPV3d7MwSuZhjL4puhqu6A"
 });
 
+var trashgames = new TrashGames();
 bot.on('ready', function() {
     console.log(bot.username + " - (" + bot.id + ")");
 });
 
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
+
+    trashgames.read(message, function(response){
+      bot.sendMessage({
+          to: channelID,
+          message: response
+      });
+    });
+
     if (message === "ping") {
         bot.sendMessage({
             to: channelID,
