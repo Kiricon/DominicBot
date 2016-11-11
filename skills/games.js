@@ -5,7 +5,7 @@ class TrashGames{
   constructor(){
     this.keywords = [0,0,0,0,0];
     this.words = ["game", "games", "good", "like", "play", "played"];
-    this.reponses = ["games aren't good", "don't play games"];
+    this.responses = ["games aren't good", "don't play games"];
   }
 
   //###Digest the messages and respond appropriatly
@@ -13,14 +13,14 @@ class TrashGames{
     if(this.talkingAboutGames(message)){
 
       var response = this.buildResponse();
-      if(repsonse){
-        callback(reponse);
+      if(response != false){
+        callback(response);
         this.keywords = [0,0,0,0,0];
       }
 
     }else{
       this.keywords.push(0);
-      this.keywords.pop();
+      this.keywords.shift();
     }
     console.log(this.keywords);
   }
@@ -29,28 +29,30 @@ class TrashGames{
   //##### Figure out if those plebs are talking about games.
   talkingAboutGames(message){
     let self = this;
+    let bool = false;
 
-
-    this.words.forEach(function(value){
+    for(var i = 0; i < this.words.length; i++){
+      let value = this.words[i];
       if(message.toLowerCase().indexOf(value) > -1){
         self.keywords.push(value);
-        self.keywords.pop();
-        return true;
+        self.keywords.shift();
+        bool = true;
+        i = this.words.length;
       }
-    });
+    }
 
-    return false;
+    return bool;
 
   }
 
   //###### If they are talking about games and we can response then let's do it!
-  buildReponse(){
+  buildResponse(){
     if(this.keywords.includes("game") || this.keywords.includes("games")){
 
-      if(this.keywords.include("good") || this.keywords.include("like")){
+      if(this.keywords.includes("good") || this.keywords.includes("like")){
         return this.responses[0];
-      }else if(this.keywords.include("play") || this.keywords.include("played")){
-        return this.response[1];
+      }else if(this.keywords.includes("play") || this.keywords.includes("played")){
+        return this.responses[1];
       }else{
         return false;
       }
