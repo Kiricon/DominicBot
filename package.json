@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Kiricon/DominicBot#readme",
   "dependencies": {
-    "discord.io": "^2.2.4"
+    "4chanjs": "^0.1.0",
+    "discord.io": "^2.2.4",
+    "https": "^1.0.0"
   }
 }

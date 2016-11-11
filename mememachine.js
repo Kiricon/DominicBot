@@ -1,7 +1,7 @@
-var DiscordClient = require('discord.io');
+var Discord= require('discord.io');
 var chan = require('./4chan.js');
 var https = require('https');
-var bot = new DiscordClient({
+var bot = new Discord.Client({
     autorun: true,
     token: "MTY5MDk3NjgzMTE2NjIxODI0.Ce6asA.GI7Y-zPV3d7MwSuZhjL4puhqu6A"
 });
