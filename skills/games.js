@@ -30,15 +30,20 @@ class TrashGames{
   talkingAboutGames(message){
     let self = this;
     let bool = false;
+    let discovered = [];
 
     for(var i = 0; i < this.words.length; i++){
+
       let value = this.words[i];
       if(message.toLowerCase().indexOf(value) > -1){
-        self.keywords.push(value);
-        self.keywords.shift();
-        bool = true;
-        i = this.words.length;
+        if(!discovered.includes(value)){
+          self.keywords.push(value);
+          self.keywords.shift();
+          discovered.push(value);
+          bool = true;
+        }
       }
+
     }
 
     return bool;
