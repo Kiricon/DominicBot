@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Kiricon/DominicBot/issues"
   },
-  "homepage": "https://github.com/Kiricon/DominicBot#readme"
+  "homepage": "https://github.com/Kiricon/DominicBot#readme",
+  "dependencies": {
+    "discord.io": "^2.2.4"
+  }
 }
