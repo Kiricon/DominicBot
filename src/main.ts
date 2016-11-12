@@ -1,6 +1,6 @@
 var Discord= require('discord.io');
 var chan = require('./skills/4chan.js');
-var TrashGames = require("./skills/games.js");
+import {TrashGames} from "./skills/games"
 var https = require('https');
 var bot = new Discord.Client({
     autorun: true,

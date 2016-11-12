@@ -1,6 +1,6 @@
 var chan = require('4chanjs');
 var random = chan.board('b');
-var mod = module.exports;
+var mod = module.exports; 
 
 mod.getMeme = function(callback){
   var result = "";
