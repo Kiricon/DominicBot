@@ -1,12 +1,11 @@
+/// <reference path="./../node.d.ts" />
+//delcare function includes(any:any);
 
-
-class TrashGames{
+export class TrashGames{
   //###### Build out our basics.
-  constructor(){
-    this.keywords = [0,0,0,0,0];
-    this.words = ["game", "games", "good", "like", "play", "played"];
-    this.responses = ["games aren't good", "don't play games"];
-  }
+  keywords: Array<string> = ["","","","",""];
+  words: Array<string> = ["game", "games", "good", "like", "play", "played"];
+  responses: Array<string> = ["games aren't good", "don't play games"];
 
   //###Digest the messages and respond appropriatly
   read(message, callback){
@@ -15,11 +14,11 @@ class TrashGames{
       var response = this.buildResponse();
       if(response != false){
         callback(response);
-        this.keywords = [0,0,0,0,0];
+        this.keywords = ["","","","",""];
       }
 
     }else{
-      this.keywords.push(0);
+      this.keywords.push("");
       this.keywords.shift();
     }
     console.log(this.keywords);
@@ -30,13 +29,13 @@ class TrashGames{
   talkingAboutGames(message){
     let self = this;
     let bool = false;
-    let discovered = [];
+    let discovered: Array<string> = [];
 
     for(var i = 0; i < this.words.length; i++){
 
       let value = this.words[i];
       if(message.toLowerCase().indexOf(value) > -1){
-        if(!discovered.includes(value)){
+        if(discovered.indexOf(value) == -1){
           self.keywords.push(value);
           self.keywords.shift();
           discovered.push(value);
@@ -52,11 +51,11 @@ class TrashGames{
 
   //###### If they are talking about games and we can response then let's do it!
   buildResponse(){
-    if(this.keywords.includes("game") || this.keywords.includes("games")){
+    if(this.keywords.indexOf("game") > -1 || this.keywords.indexOf("games") > -1){
 
-      if(this.keywords.includes("good") || this.keywords.includes("like")){
+      if(this.keywords.indexOf("good") > -1 || this.keywords.indexOf("like") > -1){
         return this.responses[0];
-      }else if(this.keywords.includes("play") || this.keywords.includes("played")){
+      }else if(this.keywords.indexOf("play") > -1 || this.keywords.indexOf("played") > -1){
         return this.responses[1];
       }else{
         return false;
@@ -68,7 +67,3 @@ class TrashGames{
   }
 
 }
-
-
-
-module.exports = TrashGames;
